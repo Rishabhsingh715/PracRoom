@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         btn2.setOnClickListener {
 
            val ll : List<Person> =  db.getDao().getAll()
-           val Padapter = PersonAdapter(ll)
+           val Padapter = PersonAdapter(ll,db)
 
             RV.layoutManager = LinearLayoutManager(this)
             RV.adapter = Padapter

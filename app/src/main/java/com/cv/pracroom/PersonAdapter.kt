@@ -1,12 +1,14 @@
 package com.cv.pracroom
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.person.view.*
 
-class PersonAdapter(val person: List<Person>) : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
+class PersonAdapter(val person: List<Person>,val db:Pdatabase) : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
 
     inner class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
@@ -25,7 +27,8 @@ class PersonAdapter(val person: List<Person>) : RecyclerView.Adapter<PersonAdapt
         holder.itemView.tv2.text = person[position].skill
 
         holder.itemView.del.setOnClickListener {
-
+            db.getDao().delete(person[position].name)
+          Log.d("DEL","Deleted the value")
         }
 
     }
