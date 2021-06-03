@@ -7,22 +7,22 @@
     android:layout_margin="20dp">
 
     <TextView
-        android:textColor="@color/text"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv1"
         android:hint="value"
         android:textSize="40sp"
-        android:fontFamily="cursive"/>
+        android:fontFamily="sans-serif-condensed-medium"/>
     <TextView
 
-        android:textColor="@color/text"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv2"
         android:textSize="35sp"
         android:hint="value"
-        android:fontFamily="cursive"/>
+        android:fontFamily="sans-serif-condensed-medium"/>
     <Button
         android:id="@+id/del"
         android:layout_width="wrap_content"

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() , delete{
 
     val db by lazy {
         Room.databaseBuilder(this,
@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
             val name = ed1.text.toString()
             val skill = ed2.text.toString()
 
+
             db.getDao().insert(Person(name,skill))
             Toast.makeText(this,"Refresh now",Toast.LENGTH_SHORT).show()
         }
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         btn2.setOnClickListener {
 
            val ll : List<Person> =  db.getDao().getAll()
-           val Padapter = PersonAdapter(ll,db)
+           val Padapter = PersonAdapter(ll,this)
 
             RV.layoutManager = LinearLayoutManager(this)
             RV.adapter = Padapter
@@ -39,5 +40,9 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onItemClicked(person: Person) {
+         db.getDao().delete(person.name)
     }
 }

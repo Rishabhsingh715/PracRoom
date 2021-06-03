@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.person.view.*
 
-class PersonAdapter(val person: List<Person>,val db:Pdatabase) : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
+class PersonAdapter(val person: List<Person>,val listener: delete) : RecyclerView.Adapter<PersonAdapter.PersonViewHolder>() {
 
     inner class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
@@ -16,20 +16,21 @@ class PersonAdapter(val person: List<Person>,val db:Pdatabase) : RecyclerView.Ad
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(
+        val view = PersonViewHolder(LayoutInflater.from(parent.context).inflate(
             R.layout.person,parent,false
-        )
-        return PersonViewHolder(view)
+        ))
+        view.itemView.del.setOnClickListener{
+            listener.onItemClicked(person[view.adapterPosition])
+        }
+
+        return view
     }
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
        holder.itemView.tv1.text = person[position].name
         holder.itemView.tv2.text = person[position].skill
 
-        holder.itemView.del.setOnClickListener {
-            db.getDao().delete(person[position].name)
-          Log.d("DEL","Deleted the value")
-        }
+
 
     }
 
@@ -37,4 +38,8 @@ class PersonAdapter(val person: List<Person>,val db:Pdatabase) : RecyclerView.Ad
 
         return person.size
     }
+}
+
+interface delete {
+    fun onItemClicked(person : Person)
 }

@@ -9,12 +9,12 @@ import androidx.room.Query
 interface PersonDao {
 
     @Insert
-    fun insert(person: Person)
+     fun insert(person: Person)
 
     @Query("select * from Person")
-    fun getAll(): List<Person>
+     fun getAll(): List<Person>
 
     @Query("delete from Person where name = :nam")
-    fun delete(nam: String)
+     fun delete(nam: String)
 
 }
