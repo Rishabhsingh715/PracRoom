@@ -13,7 +13,6 @@ class PersonAdapter(val person: List<Person>,val listener: delete) : RecyclerVie
     inner class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
 
         val view = PersonViewHolder(LayoutInflater.from(parent.context).inflate(
