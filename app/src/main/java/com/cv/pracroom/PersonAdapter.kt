@@ -22,7 +22,6 @@ class PersonAdapter(val person: List<Person>,val listener: delete) : RecyclerVie
         view.itemView.del.setOnClickListener{
             listener.onItemClicked(person[view.adapterPosition])
         }
-
         return view
     }
 
